@@ -155,7 +155,8 @@ def game_page(system_prompt, select_model):
         # Only call rerun if necessary
         if st.session_state.level_int > 4:
             st.session_state.goto_result = True
-        st.experimental_rerun()
+        
+        st.rerun()  # Replace the deprecated st.experimental_rerun() with st.rerun()
 
 
 ######
