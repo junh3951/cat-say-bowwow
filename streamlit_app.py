@@ -138,18 +138,24 @@ def game_page(system_prompt, select_model):
         button_hide = False
 
     def click_button():
-      st.session_state.tmp_state = True
-    button_label = str(st.session_state.level_int+1)+"단계" if st.session_state.level_int<4 else "결과 페이지"
+        st.session_state.tmp_state = True
+
+    button_label = str(st.session_state.level_int + 1) + "단계" if st.session_state.level_int < 4 else "결과 페이지"
+    
     if not button_hide:
-      st.button(f"{button_label}로 넘어가기",key = "button", on_click=click_button, disabled=button_hide)
+        st.button(f"{button_label}로 넘어가기", key="button", on_click=click_button, disabled=button_hide)
+    
+    # Check if `tmp_state` is set to trigger a rerun
     if st.session_state.tmp_state:
-      st.session_state.level_int += 1
-      st.session_state.messages = []
-      st.session_state.tmp_state = False
-      button_hide = True
-      if st.session_state.level_int > 4:
-          st.session_state.goto_result = True
-      st.experimental_rerun()
+        st.session_state.level_int += 1
+        st.session_state.messages = []
+        st.session_state.tmp_state = False
+        button_hide = True
+
+        # Only call rerun if necessary
+        if st.session_state.level_int > 4:
+            st.session_state.goto_result = True
+        st.experimental_rerun()
 
 
 ######
