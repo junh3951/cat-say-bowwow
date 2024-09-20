@@ -81,7 +81,7 @@ def game_page(system_prompt, select_model):
     full_response = ""
     button_hide = True
 
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(api_key=st.secrets["api_key"])
 
     if "openai_model" not in st.session_state:
         st.session_state["openai_model"] = select_model
